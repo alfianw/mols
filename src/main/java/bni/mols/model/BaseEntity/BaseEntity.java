@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bni.mols.model;
+package bni.mols.model.BaseEntity;
 
-import bni.mols.model.BaseEntity.BaseEntity;
-import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,15 +19,13 @@ import lombok.NoArgsConstructor;
  * @author alfia
  */
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roll extends BaseEntity{
+@MappedSuperclass
+public class BaseEntity {
     
-    @Column(nullable = false)
-    private String name;
-    
-    @ManyToMany(mappedBy = "rolls")
-    private List<User> users;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
 }
