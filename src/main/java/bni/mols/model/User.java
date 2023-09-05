@@ -28,13 +28,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends BaseEntity{
+public class User{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
     @Column(nullable = false)
     private String userName;
     
     @Column(nullable = false)
-    private String Password;
+    private String password;
     
     @ManyToMany
     @JoinTable(name = "user_roll", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "roll_id"))

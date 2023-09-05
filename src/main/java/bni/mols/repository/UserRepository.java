@@ -6,12 +6,14 @@
 package bni.mols.repository;
 
 import bni.mols.model.User;
-import bni.mols.repository.GenericRepository.GenericRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author alfia
  */
-public interface UserRepository extends GenericRepository<User>{
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
     
 }

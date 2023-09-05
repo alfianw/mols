@@ -6,12 +6,14 @@
 package bni.mols.repository;
 
 import bni.mols.model.Roll;
-import bni.mols.repository.GenericRepository.GenericRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author alfia
  */
-public interface RollRepository extends GenericRepository<Roll>{
+@Repository
+public interface RollRepository extends JpaRepository<Roll, Long>{
     
 }

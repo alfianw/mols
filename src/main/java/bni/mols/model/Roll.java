@@ -6,9 +6,11 @@
 package bni.mols.model;
 
 import bni.mols.model.BaseEntity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,12 +27,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roll extends BaseEntity{
+public class Roll{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
     @Column(nullable = false)
     private String name;
     
-    @ManyToMany(mappedBy = "rolls")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "rolls", fetch = FetchType.EAGER)
     private List<User> users;
     
 }

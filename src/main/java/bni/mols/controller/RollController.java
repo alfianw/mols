@@ -5,8 +5,19 @@
  */
 package bni.mols.controller;
 
-import bni.mols.controller.GenericController.GenericController;
 import bni.mols.model.Roll;
+import bni.mols.service.RollService;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +28,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/roll")
 @RestController
-public class RollController extends GenericController<Roll>{
+@AllArgsConstructor
+public class RollController{
     
+    @Autowired
+    private RollService rollService;
+    
+    @GetMapping
+    public ResponseEntity<List<Roll>> findAll(){
+        return new ResponseEntity(rollService.findAll(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Roll> findById(@PathVariable("id") Long  id){
+        return new ResponseEntity(rollService.findById(id), HttpStatus.OK);
+    }
+    
+    @PostMapping
+    public ResponseEntity<Roll> save(@RequestBody Roll entity){
+        return new ResponseEntity(rollService.save(entity), HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Roll> update(@PathVariable("id") Long id, @RequestBody Roll entity){
+        return new ResponseEntity(rollService.update(id, entity), HttpStatus.CREATED);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Roll> delete(@PathVariable("id") Long id){
+        return new ResponseEntity(rollService.delete(id), HttpStatus.OK);
+    }
 }
