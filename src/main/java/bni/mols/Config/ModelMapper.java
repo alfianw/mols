@@ -4,7 +4,6 @@
 // * and open the template in the editor.
 // */
 //package bni.mols.Config;
-//
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //

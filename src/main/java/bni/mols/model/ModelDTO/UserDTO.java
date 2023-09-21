@@ -20,6 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserDTO {
     private String userName;
+    private String password;
     private List<String> roles;
-    
 }

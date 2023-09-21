@@ -6,8 +6,10 @@
 package bni.mols.service;
 
 import bni.mols.model.Roll;
+import bni.mols.model.User;
 import bni.mols.repository.RollRepository;
 import java.util.List;
+import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,6 +55,14 @@ public class RollService{
         rollRepository.delete(data);
         return data;
         
+    }
+
+    public Stream<Object> save(String role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object save(User entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

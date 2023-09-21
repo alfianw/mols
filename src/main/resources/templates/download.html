@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Excel</title>
+</head>
+<body>
+    <h1>Download Excel</h1>
+    <button id="downloadButton">Download Excel</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#downloadButton").click(function () {
+                // Buat permintaan AJAX untuk mengunduh berkas Excel
+                $.ajax({
+                    url: "http://localhost:8080/user/excel", // Ganti dengan URL endpoint Anda
+                    method: "GET",
+                    responseType: "arraybuffer", // Menggunakan responseType arraybuffer untuk data biner
+                    success: function (data) {
+                        // Membuat objek blob
+                        var blob = new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+                        // Membuat URL untuk berkas blob
+                        var url = window.URL.createObjectURL(blob);
+
+                        // Membuat tautan unduhan
+                        var a = document.createElement("a");
+                        a.href = url;
+                        a.download = "user_data.xlsx"; // Nama berkas yang akan diunduh
+                        document.body.appendChild(a);
+                        a.click();
+
+                        // Hapus tautan setelah diunduh
+                        window.URL.revokeObjectURL(url);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
